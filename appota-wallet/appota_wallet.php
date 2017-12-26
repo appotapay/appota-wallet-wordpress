@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Appota Wallet
- * Plugin URI: appotapay.com
+ * Plugin URI: vi.appota.com
  * Description: Thanh toán với Ví Appota
  * - Tích hợp thanh toán qua appotapay.com cho các website bán hàng có đăng ký API.
  * - Thực hiện lấy thông tin tài khoản người bán                             *
@@ -15,7 +15,7 @@
  */
 if (!defined('ABSPATH'))
     exit; // Exit if accessed directly
-include(WP_PLUGIN_DIR . '/appota-wallet/call_api.php');
+include(plugin_dir_path(__FILE__) . 'call_api.php');
 
 if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_option('active_plugins')))) {
     //Create class after the plugins are loaded
@@ -199,7 +199,7 @@ if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_
 
             public function process_payment($order_id)
             {
-                include(WP_PLUGIN_DIR . '/appota-wallet/appota_logger.php');
+                include(plugin_dir_path(__FILE__) . 'appota_logger.php');
                 $logger = new WC_Appota_Logger();
 
                 $order = new WC_Order($order_id);
@@ -269,8 +269,8 @@ if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_
             function payment_complete()
             {
                 global $woocommerce;
-                include(WP_PLUGIN_DIR . '/appota-wallet/appota_receiver.php');
-                include(WP_PLUGIN_DIR . '/appota-wallet/appota_logger.php');
+                include(plugin_dir_path(__FILE__) . 'appota_receiver.php');
+                include(plugin_dir_path(__FILE__) . 'appota_logger.php');
 
                 $receiver = new WC_Appota_Receiver();
                 $logger = new WC_Appota_Logger();
