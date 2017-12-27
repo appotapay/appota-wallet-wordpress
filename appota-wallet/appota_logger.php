@@ -7,8 +7,7 @@
  * Ghi thông tin vào file log
  */
 
-define('DIR_LOG', 'logs/');
-define('FILE_NAME', 'apr'); //Phần mở rộng của file là .log
+define('DIR_LOG', plugin_dir_path(__FILE__) . 'logs/');
 
 Class WC_Appota_Logger extends WC_Gateway_Appota_Payment {
 
